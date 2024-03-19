@@ -1,0 +1,15 @@
+
+definition_version: 1
+
+native_app:
+    name: my_second_nativeapp
+    source_stage: hello_snowflake_package.stage_content
+    artifacts:
+    - src: app/*
+      dest: ./
+    package:
+      name: world_snowflake_package
+      role: accountadmin
+    application:
+      role: accountadmin
+      name: world_snowflake_app

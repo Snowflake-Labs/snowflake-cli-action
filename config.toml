@@ -1,0 +1,12 @@
+default_connection_name = "myconnection" 
+  
+[connections] 
+[connections.myconnection]
+account = "fxb32936"
+user = "jorvasquezr"
+password = ""
+warehouse = "COMPUTE_WH"
+database = "mytestdb"
+schema = "PUBLIC"
+role = "ACCOUNTADMIN"
+region = "us-east-1"
