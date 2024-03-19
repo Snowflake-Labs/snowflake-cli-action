@@ -1,0 +1,22 @@
+﻿# action.yml
+name: 'Update NativeApp source code'
+description: 'Updates the nativeapp source code in the application stage file'
+inputs:
+  config_file:
+    description: 'SnowCli required config file'
+    required: true
+  stage_name:
+    description: 'Stage where the code is going to be updated or deployed'
+    required: true
+  source_code_path:
+    description: 'Path to the source code to be updated'
+    required: false
+    default: '.'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.config_file }}
+    - ${{ inputs.stage_name }}
+    - ${{ inputs.source_code_path }}

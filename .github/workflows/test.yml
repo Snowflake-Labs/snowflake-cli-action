@@ -1,0 +1,22 @@
+﻿on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    env:
+      SNOWFLAKE_CONNECTION: "${{secrets.SNOWFLAKE_CONNECTION}}"
+      ACTIONS_RUNNER_DEBUG: true
+
+    name: Job to upload the source code
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Upload source code to Snowflake
+        uses: ./ 
+        id: upload_source_code
+        with:
+          config_file: "${{secrets.SNOWFLAKE_CONNECTION}}"
+          stage_name: "@snowflake_example_stage"
+          source_code_path: "./example_native_app_source_code"
+      - name: Show execution log
+        run: echo "$LOG_SNOWCLI_STAGE_UPDATE"
