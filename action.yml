@@ -1,0 +1,20 @@
+﻿# action.yml
+name: 'Deploy Nativeapp'
+description: 'Creates a new version for your application package in your Snowflake account'
+inputs:
+  default-config-file:
+    description: 'Path to the default config.toml file'
+    required: true
+  version:
+    description: 'Python snowflake-cli-labs version'
+  application-path:
+    description: ' '
+    required: false
+    default: '.'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.default-config-file }}
+    - ${{ inputs.application-path }}

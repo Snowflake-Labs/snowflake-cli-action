@@ -1,0 +1,25 @@
+﻿name: test
+
+on:
+  push:
+    branches:
+      - docker-nativeapps-deploy
+
+jobs:
+  action_with_config_file:
+
+    runs-on: ubuntu-latest
+    env:
+      SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD }}
+
+    name: Upload nativeapp assets
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy nativeapp to Snowflake
+        uses: ./ 
+        id: deploy_native_app
+        with:
+          config_file: "config.toml"
+          source_code_path: "my_app"
