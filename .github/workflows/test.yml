@@ -1,0 +1,52 @@
+﻿name: test
+
+on: [push]
+
+jobs:
+  action_with_config_file:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+
+    env:
+      SNOWFLAKE_CONNECTION: "${{secrets.SNOWFLAKE_CONNECTION}}"
+      SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+
+    name: Job to test the connection with snowflake
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up snowcli
+        uses: ./ 
+        id: setup_snowcli
+        with:
+          config_file_content: "${{secrets.SNOWFLAKE_CONNECTION}}"
+
+      - name: Test version
+        run: snow --version
+
+      - name: Test connection 
+        shell: bash
+        run: |
+          echo "Snowflake connection password $SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD"
+          export SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD="$SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD"
+          snow connection list
+          snow connection test
+
+      - name: Test stage copy command
+        shell: bash
+        run: |
+          if [[ ! $RUNNER_OS = "Windows" ]]; then 
+            snow object stage copy --overwrite example_native_app_source_code/ @snowflake_example_stage 
+          else 
+            snow object stage copy example_native_app_source_code/ @snowflake_example_stage --overwrite
+          fi
+          
+          snow object stage list @snowflake_example_stage
+        

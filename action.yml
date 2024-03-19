@@ -1,0 +1,22 @@
+﻿# action.yml
+name: 'Install Snowflake CLI'
+description: 'Download and install snowflake-cli-labs through PyPi'
+inputs:
+  config_file_content:
+    description: 'Snowli custom configuration file'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Download snowflake-cli-labs
+      shell: bash
+      run: bash $GITHUB_ACTION_PATH/install_snowcli.sh
+
+    - name: Set up config.toml
+      if:  ${{ inputs.config_file_content != '' }}
+      shell: bash
+      run: bash $GITHUB_ACTION_PATH/setup_config_file.sh
+      env:
+        CONFIG_FILE_CONTENT: ${{ inputs.config_file_content }}
