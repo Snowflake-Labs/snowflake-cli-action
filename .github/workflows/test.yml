@@ -1,16 +1,29 @@
-﻿on: [push]
+﻿
+  name: test
+
+on: [push]
 
 jobs:
-  hello_world_job:
-    runs-on: ubuntu-latest
+  action_with_config_file:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+
     env:
       SNOWFLAKE_CONNECTION: "${{secrets.SNOWFLAKE_CONNECTION}}"
-      ACTIONS_RUNNER_DEBUG: true
+      SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
-    name: Job to upload the source code
+    name: Job to test the connection with snowflake
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Upload source code to Snowflake
         uses: ./ 
         id: upload_source_code
@@ -18,5 +31,5 @@ jobs:
           config_file: "${{secrets.SNOWFLAKE_CONNECTION}}"
           stage_name: "@snowflake_example_stage"
           source_code_path: "./example_native_app_source_code"
-      - name: Show execution log
-        run: echo "$LOG_SNOWCLI_STAGE_UPDATE"
+#      - name: Show execution log
+#        run: echo "$LOG_SNOWCLI_STAGE_UPDATE"

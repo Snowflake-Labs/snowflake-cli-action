@@ -12,6 +12,14 @@ inputs:
     description: 'Path to the source code to be updated'
     required: false
     default: '.'
+  snowcli_version:
+    description: 'Snowcli version to be used'
+    required: false
+    default: ''
+  python_version:
+    description: 'Python version to be used'
+    required: false
+    default: ''
 
 runs:
   using: 'docker'
@@ -20,3 +28,5 @@ runs:
     - ${{ inputs.config_file }}
     - ${{ inputs.stage_name }}
     - ${{ inputs.source_code_path }}
+    - ${{ inputs.snowcli_version }}
+    - ${{ inputs.python_version }}

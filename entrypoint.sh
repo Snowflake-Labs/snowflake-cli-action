@@ -8,11 +8,6 @@ echo $(snow --config-file config.toml connection test) >> result.log
 
 echo $(snow --config-file config.toml object stage copy $3 $2 --overwrite) >> result.log
 
-{
-    echo 'LOG_SNOWCLI_STAGE_UPDATE<<EOF'
-    echo &(cat result.log)
-    echo EOF
-
-} >> "$GITHUB_ENV"
+echo "Hello World $0 $1 $2 $3 $4 $5"
 
 
