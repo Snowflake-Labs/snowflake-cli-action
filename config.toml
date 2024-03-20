@@ -1,0 +1,11 @@
+﻿default_connection_name = "mobilize" 
+  
+[connections] 
+[connections.mobilize] 
+account = "mobilize" 
+user = "jovasquez" 
+password = "" 
+role = "SC_ASGARD_ROLE" 
+warehouse = "SC_ASGARD_WH" 
+database = "MOBILIZE_DEMO" 
+schema = "ADVENTUREWORKS" 

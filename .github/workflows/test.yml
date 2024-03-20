@@ -15,7 +15,6 @@ jobs:
           - windows-latest
 
     env:
-      SNOWFLAKE_CONNECTION: "${{secrets.SNOWFLAKE_CONNECTION}}"
       SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
     name: Job to test the connection with snowflake
@@ -25,8 +24,6 @@ jobs:
       - name: Set up snowcli
         uses: ./ 
         id: setup_snowcli
-        with:
-          config_file_content: "${{secrets.SNOWFLAKE_CONNECTION}}"
 
       - name: Test version
         run: snow --version
@@ -34,8 +31,6 @@ jobs:
       - name: Test connection 
         shell: bash
         run: |
-          echo "Snowflake connection password $SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD"
-          export SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD="$SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD"
           snow connection list
           snow connection test
 

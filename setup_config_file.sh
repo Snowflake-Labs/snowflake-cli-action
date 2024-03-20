@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+echo "CLI VERSION: $CONFIG_FILE_PATH"
+echo "PYTHON VERSION: $SAVE_CONFIG_FILE_SNOWFLAKE_DIR"
+
 if test -f "config.toml"; then
     echo "config.toml already exists."
     exit 0
@@ -11,8 +14,6 @@ if test -f "~/.snowflake/config.toml"; then
     echo "config.toml already exists"
     exit 0
 fi
-
-echo "$CONFIG_FILE_CONTENT" >> config.toml
 
 if [ ! -d "~/.snowflake" ]; then
   mkdir ~/.snowflake/
