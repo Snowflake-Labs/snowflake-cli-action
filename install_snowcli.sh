@@ -11,10 +11,16 @@ then
     exit 0
 fi
 
-python -m pip install --user pipx
+installation_comand="pip"
+
+if [ "$INSTALL_USING_PIPX" == true ]; then
+    python3 -m pipx install snowflake-cli-labs 
+    installation_comand="pipx"
+fi
+
 
 if [ "$CLI_VERSION" == "" ]; then
-    python3 -m pipx install snowflake-cli-labs 
+    python3 -m $installation_comand install snowflake-cli-labs 
 else 
-    python3 -m pipx install snowflake-cli-labs==$CLI_VERSION
+    python3 -m $installation_comand install snowflake-cli-labs==$CLI_VERSION
 fi

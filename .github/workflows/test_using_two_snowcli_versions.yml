@@ -1,4 +1,4 @@
-﻿name: test
+﻿name: test_using_two_snowcli_versions
 
 on: [push]
 
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Set up snowcli
+      - name: Set up snowcli 2.1.0
         uses: ./ 
         id: setup_snowcli
         with:
