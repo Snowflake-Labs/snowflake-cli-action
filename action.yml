@@ -10,10 +10,6 @@ inputs:
     description: 'Config file path'
     required: false
     default: './config.toml'
-  install_using_pipx:
-    description: 'Flag to indicate whether install snowflake-cli-labs using pipx instead of pip '
-    required: false
-    default: false
   save_config_file_in_snowflake_dir:
     description: 'Flag to indicate whether save the config file in snowflake path'
     required: false
@@ -27,7 +23,6 @@ runs:
       run: bash $GITHUB_ACTION_PATH/install_snowcli.sh
       env:
         CLI_VERSION: ${{ inputs.cli_version }} 
-        INSTALL_USING_PIPX: ${{ inputs.install_using_pipx }} 
 
     - name: Set up config.toml
       shell: bash

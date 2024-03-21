@@ -24,7 +24,6 @@ jobs:
         id: setup_snowcli
         with:
           cli_version: '2.1.0'
-          install_using_pipx: true
 
       - name: Test version
         run: snow --version
@@ -82,7 +81,6 @@ jobs:
         id: setup_snowcli
         with:
           cli_version: '2.1.0'
-          install_using_pipx: true
 
       - name: Test version
         run: snow --version
