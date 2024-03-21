@@ -4,15 +4,7 @@ on: [push]
 
 jobs:
   action_with_config_file:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - macos-latest
-          - ubuntu-latest
-          - windows-latest
+    runs-on: ubuntu-latest
 
     env:
       SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
@@ -28,6 +20,13 @@ jobs:
         id: setup_snowcli
         with:
           cli_version: '2.1.0'
+
+      - name: Set up snowcli 2.1.1
+        uses: ./ 
+        id: setup_snowcli
+        with:
+          cli_version: '2.1.1'
+          install_using_pipx: true
 
       - name: Test version
         run: snow --version

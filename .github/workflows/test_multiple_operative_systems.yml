@@ -1,4 +1,4 @@
-﻿name: test_pipx_installation
+﻿name: test_pip_installation_and_specific_version
 
 on: [push]
 
