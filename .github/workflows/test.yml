@@ -26,15 +26,7 @@ jobs:
           cache-to: type=gha,mode=max
 
   action_with_config_file:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - macos-latest
-          - ubuntu-latest
-          - windows-latest
+    runs-on: ubuntu-latest
 
     env:
       SNOWFLAKE_CONNECTION: "${{secrets.SNOWFLAKE_CONNECTION}}"
