@@ -4,6 +4,7 @@ set -euo pipefail
 
 echo "CLI VERSION: $CLI_VERSION"
 echo "INSTALL_USING_PIPX: $INSTALL_USING_PIPX"
+pipx list
 
 if command -v snow &> /dev/null
 then
@@ -11,7 +12,6 @@ then
     exit 0
 fi
 
-pipx list
 installation_comand="pip"
 
 if [ "$INSTALL_USING_PIPX" == true ]; then
