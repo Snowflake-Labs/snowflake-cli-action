@@ -11,10 +11,10 @@ then
     exit 0
 fi
 
+pipx list
 installation_comand="pip"
 
 if [ "$INSTALL_USING_PIPX" == true ]; then
-    python3 -m pipx install snowflake-cli-labs 
     installation_comand="pipx"
 fi
 
