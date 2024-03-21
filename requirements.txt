@@ -1,1 +1,0 @@
-﻿snowflake-cli-labs

@@ -3,8 +3,7 @@
 set -euo pipefail
 
 echo "CLI VERSION: $CLI_VERSION"
-echo "PYTHON VERSION: $PYTHON_VERSION"
-echo "VENV_PATH VERSION: $VENV_PATH"
+echo "INSTALL_USING_PIPX: $INSTALL_USING_PIPX"
 
 if command -v snow &> /dev/null
 then
@@ -12,4 +11,7 @@ then
     exit 0
 fi
 
-python3 -m pip install --no-cache-dir -r requirements.txt
+
+python -m pip install --user pipx
+
+python3 -m pipx install snowflake-cli-labs 
