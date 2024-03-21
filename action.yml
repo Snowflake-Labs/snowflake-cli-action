@@ -5,6 +5,7 @@ inputs:
   cli_version:
     description: 'Snowcli version'
     required: false
+    default: ''
   config_file_path:
     description: 'Config file path'
     required: false

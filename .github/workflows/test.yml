@@ -26,6 +26,8 @@ jobs:
       - name: Set up snowcli
         uses: ./ 
         id: setup_snowcli
+        with:
+          cli_version: '2.1.0'
 
       - name: Test version
         run: snow --version
