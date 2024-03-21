@@ -30,8 +30,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           
-    name: Job to test the connection with snowflake
-    steps:
       - name: Checkout
         uses: actions/checkout@v4
 
