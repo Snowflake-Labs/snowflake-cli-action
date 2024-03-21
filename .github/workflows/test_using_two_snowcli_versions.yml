@@ -15,17 +15,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
+
+      - name: Install snowcli 2.1.1
+        run: python -m pip install snowflake-cli-labs==2.1.1 
+
       - name: Set up snowcli 2.1.0
         uses: ./ 
         id: setup_snowcli
         with:
           cli_version: '2.1.0'
-
-      - name: Set up snowcli 2.1.1
-        uses: ./ 
-        id: setup_snowcli
-        with:
-          cli_version: '2.1.1'
           install_using_pipx: true
 
       - name: Test version
