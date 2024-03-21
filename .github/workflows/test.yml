@@ -1,5 +1,4 @@
-﻿
-  name: test
+﻿name: test
 
 on: [push]
 
@@ -25,7 +24,7 @@ jobs:
           tags: user/app:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          
+
   action_with_config_file:
     runs-on: ${{ matrix.os }}
 
