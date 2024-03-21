@@ -6,11 +6,6 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
-
-    env:
-      SNOWFLAKE_CONNECTION: "${{secrets.SNOWFLAKE_CONNECTION}}"
-      SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,7 +24,16 @@ jobs:
           tags: jorge021/cache-testing
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          
+
+  action_with_config_file:
+    runs-on: ubuntu-latest
+
+    env:
+      SNOWFLAKE_CONNECTION: "${{secrets.SNOWFLAKE_CONNECTION}}"
+      SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+
+    name: Job to test the connection with snowflake
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
 

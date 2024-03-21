@@ -23,7 +23,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://jorge021/cache-testing'
   args:
     - ${{ inputs.config_file }}
     - ${{ inputs.stage_name }}
