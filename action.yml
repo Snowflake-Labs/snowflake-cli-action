@@ -6,6 +6,13 @@ inputs:
     description: 'Snowcli version'
     required: false
     default: ''
+  os: 
+    description: 'OS name'
+    required: true
+    
+  python-version:
+    required: true
+
   config_file_path:
     description: 'Config file path'
     required: false
@@ -18,7 +25,29 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Download snowflake-cli-labs
+    - name: Setup Local Variables
+      id: variable-setup
+      run: |
+        echo "pipx-home=$PIPX_HOME" >> $GITHUB_OUTPUT
+        echo "pipx-bin-dir=$PIPX_BIN_DIR" >> $GITHUB_OUTPUT
+
+        export BASE64_PIPX_ID=$(echo -n 'snowcli==${{ inputs.cli_version }}' | base64)
+        echo "cache-key-pipx=pipx-${{ inputs.os }}-${{ inputs.python-version }}-$BASE64_PIPX_ID" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Cache pipx
+        id: cache-pipx
+        if: ${{ inputs.os != 'macos-latest' }}
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ steps.variable-setup.outputs.pipx-home }}
+            ${{ steps.variable-setup.outputs.pipx-bin-dir }}
+          key: ${{ steps.variable-setup.outputs.cache-key-pipx }}
+
+
+    - name: Download snowflake-cli-labs ${{ inputs.cli_version }}
+      if: ${{ steps.cache-pipx.outputs.cache-hit != 'true' }}
       shell: bash
       run: bash $GITHUB_ACTION_PATH/install_snowcli.sh
       env:
