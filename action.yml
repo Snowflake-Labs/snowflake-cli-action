@@ -46,7 +46,6 @@ runs:
           ${{ steps.variable-setup.outputs.pipx-bin-dir }}
         key: ${{ steps.variable-setup.outputs.cache-key-pipx }}
 
-
     - name: Download snowflake-cli-labs ${{ inputs.cli_version }}
       if: ${{ steps.cache-pipx.outputs.cache-hit != 'true' }}
       shell: bash
