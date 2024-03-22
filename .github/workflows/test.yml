@@ -30,6 +30,7 @@ jobs:
 
     env:
       SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD }}
+      SNOWFLAKE_DEFAULT_CONNECTION_NAME: myconnection
 
     name: Job to test the connection with snowflake
     steps:
