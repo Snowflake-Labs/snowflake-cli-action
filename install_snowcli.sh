@@ -8,7 +8,7 @@ then
     exit 0
 fi
 
-
+pyenv shell $PYTHON_VERSION
 if [ "$CLI_VERSION" == "" ]; then
     pipx install snowflake-cli-labs --python $PYTHON_VERSION
 else 
