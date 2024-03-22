@@ -18,53 +18,19 @@ inputs:
     required: false
     default: './config.toml'
 
-  save-config-file-in-snowflake_dir:
-    description: 'Flag to indicate whether save the config file in snowflake path'
-    required: false
-    default: false
-
 runs:
   using: 'composite'
   steps:
-    - name: Setup Local Variables
-      id: variable-setup
-      run: |
-        echo "pipx-home=$PIPX_HOME" >> $GITHUB_OUTPUT
-        echo "pipx-bin-dir=$PIPX_BIN_DIR" >> $GITHUB_OUTPUT
-
-        export BASE64_PIPX_ID=$(echo -n 'snowflake-cli-labs==${{ inputs.cli-version }}' | base64)
-        echo "cache-key-pipx=pipx-${{ inputs.os }}-${{ inputs.python-version }}-$BASE64_PIPX_ID" >> $GITHUB_OUTPUT
-      shell: bash
-
-    - name: Cache pipx
-      id: cache-pipx
-      if: ${{ inputs.os != 'macos-latest' }}
-      uses: actions/cache@v3
-      with:
-        path: |
-          ${{ steps.variable-setup.outputs.pipx-home }}
-          ${{ steps.variable-setup.outputs.pipx-bin-dir }}
-        key: ${{ steps.variable-setup.outputs.cache-key-pipx }}
-
     - name: Download snowflake-cli-labs ${{ inputs.cli_version }}
-      if: ${{ steps.cache-pipx.outputs.cache-hit != 'true' }}
       shell: bash
       run: bash install_snowcli.sh
       env:
         CLI_VERSION: ${{ inputs.cli-version }} 
         PYTHON_VERSION: ${{ inputs.python-version }} 
 
-    - name: Ensure Pipx Paths
-      run: |
-        pipx ensurepath
-        # Optionally check which packages were restored from the cache:
-        pipx list
-      shell: bash
-
     - name: Set up config.toml
       shell: bash
       run: bash setup_config_file.sh
       env:
         CONFIG_FILE_PATH: ${{ inputs.config-file-path }} 
-        SAVE_CONFIG_FILE_SNOWFLAKE_DIR: ${{ inputs.save-config-file-in-snowflake_dir }} 
 
