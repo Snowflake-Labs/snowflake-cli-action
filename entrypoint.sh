@@ -4,6 +4,8 @@
 
 #chmod 0600 config.toml
 
+chown $USER config.toml
+
 echo $(snow --config-file $1 connection test) >> result.log
 
 echo $(snow --config-file $1 object stage copy $3 $2 --overwrite) >> result.log
