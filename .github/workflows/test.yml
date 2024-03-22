@@ -27,11 +27,6 @@ jobs:
 
   action_with_config_file:
     runs-on: ubuntu-latest
-
-    env:
-      SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD }}
-      SNOWFLAKE_DEFAULT_CONNECTION_NAME: myconnection
-
     name: Job to test the connection with snowflake
     steps:
       - name: Checkout
@@ -43,6 +38,7 @@ jobs:
         with:
           config_file: "Testconfig.toml"
           stage_name: "@snowflake_example_stage"
+          password_value: "${{ secrets.SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD }}"
           source_code_path: "./example_native_app_source_code"
 #      - name: Show execution log
 #        run: echo "$LOG_SNOWCLI_STAGE_UPDATE"

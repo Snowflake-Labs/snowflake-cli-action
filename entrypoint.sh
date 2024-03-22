@@ -6,8 +6,10 @@ cat "$1" >> config.toml
 
 chmod 0600 config.toml
 
+export SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD="$3"
+
 echo $(snow --config-file config.toml connection test)
 
-echo $(snow --config-file config.toml object stage copy $3 $2 --overwrite)
+echo $(snow --config-file config.toml object stage copy $4 $2 --overwrite)
 
 echo "Hello World $0 $1 $2 $3 $4 $5"
