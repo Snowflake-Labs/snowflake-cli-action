@@ -1,4 +1,4 @@
-﻿default_connection_name = "mobilize" 
+default_connection_name = "mobilize" 
   
 [connections] 
 [connections.mobilize] 
