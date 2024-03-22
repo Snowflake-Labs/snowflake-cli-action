@@ -11,7 +11,6 @@ fi
 
 if [ "$CLI_VERSION" == "" ]; then
     pipx install snowflake-cli-labs --python $PYTHON_VERSION
-fi
 else 
     pipx install snowflake-cli-labs==$CLI_VERSION --python $PYTHON_VERSION
 fi
