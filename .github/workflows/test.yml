@@ -40,7 +40,7 @@ jobs:
         uses: ./ 
         id: upload_source_code
         with:
-          config_file: "/action/workspace/config.toml"
+          config_file: "config.toml"
           stage_name: "@snowflake_example_stage"
           source_code_path: "./example_native_app_source_code"
 #      - name: Show execution log
