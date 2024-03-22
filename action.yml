@@ -37,14 +37,14 @@ runs:
       shell: bash
 
     - name: Cache pipx
-        id: cache-pipx
-        if: ${{ inputs.os != 'macos-latest' }}
-        uses: actions/cache@v3
-        with:
-          path: |
-            ${{ steps.variable-setup.outputs.pipx-home }}
-            ${{ steps.variable-setup.outputs.pipx-bin-dir }}
-          key: ${{ steps.variable-setup.outputs.cache-key-pipx }}
+      id: cache-pipx
+      if: ${{ inputs.os != 'macos-latest' }}
+      uses: actions/cache@v3
+      with:
+        path: |
+          ${{ steps.variable-setup.outputs.pipx-home }}
+          ${{ steps.variable-setup.outputs.pipx-bin-dir }}
+        key: ${{ steps.variable-setup.outputs.cache-key-pipx }}
 
 
     - name: Download snowflake-cli-labs ${{ inputs.cli_version }}
