@@ -55,9 +55,17 @@ runs:
         CLI_VERSION: ${{ inputs.cli-version }} 
         PYTHON_VERSION: ${{ inputs.python-version }} 
 
+    - name: Ensure Pipx Paths
+      run: |
+        pipx ensurepath
+        # Optionally check which packages were restored from the cache:
+        pipx list
+      shell: bash
+
     - name: Set up config.toml
       shell: bash
       run: bash setup_config_file.sh
       env:
         CONFIG_FILE_PATH: ${{ inputs.config-file-path }} 
         SAVE_CONFIG_FILE_SNOWFLAKE_DIR: ${{ inputs.save-config-file-in-snowflake_dir }} 
+
