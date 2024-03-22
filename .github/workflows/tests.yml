@@ -91,5 +91,5 @@ jobs:
       - name: Test version
         run: |
           snow --version
-          snow connection list
-          snow connection test
+          snow connection list --debug
+          snow connection test --debug
