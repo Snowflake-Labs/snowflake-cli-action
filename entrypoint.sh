@@ -2,10 +2,6 @@
 
 #echo "$1" >> config.toml
 
-value=`cat Testconfig.toml`  
-
-echo "$value"  
-
 chmod 0600 $1
 
 echo $(snow --config-file $1 connection test) >> result.log
