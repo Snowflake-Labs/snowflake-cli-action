@@ -27,6 +27,8 @@ jobs:
 
   action_with_config_file:
     runs-on: ubuntu-latest
+    env:
+      SNOWFLAKE_DEFAULT_CONNECTION_NAME: myconnection
     name: Job to test the connection with snowflake
     steps:
       - name: Checkout
