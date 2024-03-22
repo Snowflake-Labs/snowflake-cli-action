@@ -50,14 +50,14 @@ runs:
     - name: Download snowflake-cli-labs ${{ inputs.cli_version }}
       if: ${{ steps.cache-pipx.outputs.cache-hit != 'true' }}
       shell: bash
-      run: bash $GITHUB_ACTION_PATH/install_snowcli.sh
+      run: bash install_snowcli.sh
       env:
         CLI_VERSION: ${{ inputs.cli-version }} 
         PYTHON_VERSION: ${{ inputs.python-version }} 
 
     - name: Set up config.toml
       shell: bash
-      run: bash $GITHUB_ACTION_PATH/setup_config_file.sh
+      run: bash setup_config_file.sh
       env:
         CONFIG_FILE_PATH: ${{ inputs.config-file-path }} 
         SAVE_CONFIG_FILE_SNOWFLAKE_DIR: ${{ inputs.save-config-file-in-snowflake_dir }} 
