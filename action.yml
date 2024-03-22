@@ -2,7 +2,7 @@
 name: 'Install Snowflake CLI'
 description: 'Download and install snowflake-cli-labs through PyPi'
 inputs:
-  cli_version:
+  cli-version:
     description: 'Snowcli version'
     required: false
     default: ''
@@ -13,11 +13,12 @@ inputs:
   python-version:
     required: true
 
-  config_file_path:
+  config-file-path:
     description: 'Config file path'
     required: false
     default: './config.toml'
-  save_config_file_in_snowflake_dir:
+
+  save-config-file-in-snowflake_dir:
     description: 'Flag to indicate whether save the config file in snowflake path'
     required: false
     default: false
@@ -31,7 +32,7 @@ runs:
         echo "pipx-home=$PIPX_HOME" >> $GITHUB_OUTPUT
         echo "pipx-bin-dir=$PIPX_BIN_DIR" >> $GITHUB_OUTPUT
 
-        export BASE64_PIPX_ID=$(echo -n 'snowcli==${{ inputs.cli_version }}' | base64)
+        export BASE64_PIPX_ID=$(echo -n 'snowflake-cli-labs==${{ inputs.cli-version }}' | base64)
         echo "cache-key-pipx=pipx-${{ inputs.os }}-${{ inputs.python-version }}-$BASE64_PIPX_ID" >> $GITHUB_OUTPUT
       shell: bash
 
@@ -51,11 +52,12 @@ runs:
       shell: bash
       run: bash $GITHUB_ACTION_PATH/install_snowcli.sh
       env:
-        CLI_VERSION: ${{ inputs.cli_version }} 
+        CLI_VERSION: ${{ inputs.cli-version }} 
+        PYTHON_VERSION: ${{ inputs.python-version }} 
 
     - name: Set up config.toml
       shell: bash
       run: bash $GITHUB_ACTION_PATH/setup_config_file.sh
       env:
-        CONFIG_FILE_PATH: ${{ inputs.config_file_path }} 
-        SAVE_CONFIG_FILE_SNOWFLAKE_DIR: ${{ inputs.save_config_file_in_snowflake_dir }} 
+        CONFIG_FILE_PATH: ${{ inputs.config-file-path }} 
+        SAVE_CONFIG_FILE_SNOWFLAKE_DIR: ${{ inputs.save-config-file-in-snowflake_dir }} 
