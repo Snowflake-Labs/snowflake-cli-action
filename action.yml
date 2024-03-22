@@ -8,9 +8,6 @@ inputs:
   stage_name:
     description: 'Stage where the code is going to be updated or deployed'
     required: true
-  password_value:
-    description: 'The password of the user for the connection'
-    required: true
   source_code_path:
     description: 'Path to the source code to be updated'
     required: false
@@ -30,7 +27,6 @@ runs:
   args:
     - ${{ inputs.config_file }}
     - ${{ inputs.stage_name }}
-    - ${{ inputs.password_value }}
     - ${{ inputs.source_code_path }}
     - ${{ inputs.snowcli_version }}
     - ${{ inputs.python_version }}
