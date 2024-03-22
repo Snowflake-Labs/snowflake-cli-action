@@ -1,0 +1,8 @@
+[connections.myconnection]
+account = "mobilize"
+user = "jormorales"
+password = ""
+warehouse = "QA_MOBILIZE"
+database = "DEMO_DB"
+schema = "PUBLIC"
+role = "SC_JOTUNHEIM_ROLE"

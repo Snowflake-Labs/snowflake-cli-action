@@ -2,7 +2,7 @@
 FROM python:3.12
 WORKDIR /action/workspace
 
-COPY requirements.txt *.py *.sh /action/workspace/
+COPY requirements.txt config.toml *.py *.sh /action/workspace/
 
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
