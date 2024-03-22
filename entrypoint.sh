@@ -2,9 +2,9 @@
 
 #echo "$1" >> config.toml
 
-#chmod 0600 config.toml
+chown $USER $1
 
-chown $USER config.toml
+chmod 0600 $1
 
 echo $(snow --config-file $1 connection test) >> result.log
 
