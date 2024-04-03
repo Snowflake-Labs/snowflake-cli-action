@@ -17,3 +17,4 @@ echo $(ls $PIPX_BIN_DIR)
 mkdir $PIPX_BIN_DIR/snow_ensure_pipx_path
 cp $PIPX_BIN_DIR/snow $PIPX_BIN_DIR/snow_ensure_pipx_path
 PATH=$PIPX_BIN_DIR/snow_ensure_pipx_path:$PATH
+echo $(ls $PIPX_BIN_DIR)
