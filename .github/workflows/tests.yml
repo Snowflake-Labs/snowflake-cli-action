@@ -18,17 +18,22 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Snowflake CLI 2.1.1 with pip
-        run: python -m pip install snowflake-cli-labs==2.1.1 
+      - name: Install Snowflake CLI with pip
+        run: python -m pip install snowflake-cli-labs
 
-      - name: Install Snowflake CLI 2.1.0 with pipx
+      - name: Install Snowflake CLI with pipx
         uses: ./ 
         id: setup_snowcli
-        with:
-          cli-version: '2.1.0'
 
-      - name: Test version
-        run: snow --version
+      - name: Test snow installation
+        run: |
+          snow_installation_path=$(which snow)
+          if [[ "$snow_installation_path" = "/opt/pipx_bin/snow" ]]
+          then
+              echo "Using snow installed on $snow_installation_path, should be /opt/pipx_bin/snow"
+              exit 1
+          fi
+
 
   install_Snowcli_with_pipx_and_then_with_pip:
     runs-on: ubuntu-latest
@@ -44,23 +49,21 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Snowflake CLI 2.1.0 with pipx
+      - name: Install Snowflake CLI with pipx
         uses: ./ 
         id: setup_snowcli
-        with:
-          cli-version: '2.1.0'
 
-      - name: Show snow installation 2.1.0
+      - name: Install Snowflake CLI with pip
+        run: python -m pip install snowflake-cli-labs
+
+      - name: Test snow installation
         run: |
-          snow --version
-          which snow
-  
-      - name: Install Snowflake CLI 2.1.1 with pip
-        run: python -m pip install snowflake-cli-labs==2.1.1
-      - name: Show snow installation 2.1.1
-        run: |
-          snow --version
-          which snow 
+          snow_installation_path=$(which snow)
+          if [[ "$snow_installation_path" = "/opt/pipx_bin/snow" ]]
+          then
+              echo "Using snow installed on $snow_installation_path, should be /opt/pipx_bin/snow"
+              exit 1
+          fi
           
   install_in_multiple_os:
       runs-on: ${{ matrix.os }}
