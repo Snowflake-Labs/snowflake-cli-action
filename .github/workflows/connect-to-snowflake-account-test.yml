@@ -1,9 +1,9 @@
-﻿name: connect-to-snowflake-account-in-multiple-os-test
+﻿name: connect-to-snowflake-account-test
 
 on: [push]
 
 jobs:
-  connect-to-snowflake-account-in-multiple-os-test:
+  connect-to-snowflake-account-test:
       runs-on: ${{ matrix.os }}
 
       strategy:

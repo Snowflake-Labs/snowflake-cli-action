@@ -1,10 +1,9 @@
-﻿name: install-snowcli-with-pipx-and-then-with-pip
+﻿name: install-snowcli-with-pipx-first-and-then-with-pip
 
 on: [push]
 
 jobs:
-
-  install-snowcli-with-pipx-and-then-with-pip:
+  install-snowcli-with-pipx-first-and-then-with-pip:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -19,7 +18,7 @@ jobs:
       SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
       SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
 
-    name: Install Snowflake CLI in ${{ matrix.os }} with pip and pipx
+    name: Install Snowflake CLI in ${{ matrix.os }} with pipx first and then with pip
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
