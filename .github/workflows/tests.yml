@@ -34,6 +34,7 @@ jobs:
         id: setup_snowcli
 
       - name: Test snow installation
+        shell: bash
         run: |
           current_path=$(which snow)
           snow_expected_path="$PIPX_BIN_DIR/snow_pipx_path/snow"
@@ -73,6 +74,7 @@ jobs:
         run: python -m pip install snowflake-cli-labs
 
       - name: Test snow installation
+        shell: bash
         run: |
           current_path=$(which snow)
           snow_expected_path="$PIPX_BIN_DIR/snow_pipx_path/snow"
