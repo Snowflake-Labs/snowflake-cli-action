@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
 
+
   install_Snowcli_with_pip_and_then_with_pipx:
     runs-on: ubuntu-latest
 
@@ -11,7 +12,7 @@ jobs:
       SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
       SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
 
-    name: Test the installation of Snowflake CLI with pip and then with pipx
+    name: Test the installation of Snowflake CLI with pipx and then with pip
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -27,12 +28,14 @@ jobs:
 
       - name: Test snow installation
         run: |
-          snow_installation_path=$(which snow)
-          if [[ "$snow_installation_path" = "/opt/pipx_bin/snow" ]]
+          current_path=$(which snow)
+          snow_valid_path="$PIPX_BIN_DIR/snow"
+          if [[ "$current_path" != "$snow_valid_path" ]]
           then
-              echo "Using snow installed on $snow_installation_path, should be /opt/pipx_bin/snow"
+              echo "Using snow installed in $current_path, should be $previous_path"
               exit 1
           fi
+          
 
 
   install_Snowcli_with_pipx_and_then_with_pip:
@@ -54,14 +57,18 @@ jobs:
         id: setup_snowcli
 
       - name: Install Snowflake CLI with pip
-        run: python -m pip install snowflake-cli-labs
+        run: |
+          echo $(which snow)
+          python -m pip install snowflake-cli-labs
 
       - name: Test snow installation
         run: |
-          snow_installation_path=$(which snow)
-          if [[ "$snow_installation_path" = "/opt/pipx_bin/snow" ]]
+          current_path=$(which snow)
+          snow_valid_path="$PIPX_BIN_DIR/snow"
+          echo "current $current_path, valid path $previous_path"
+          if [[ "$current_path" != "$snow_valid_path" ]]
           then
-              echo "Using snow installed on $snow_installation_path, should be /opt/pipx_bin/snow"
+              echo "Using snow installed in $current_path, should be $previous_path"
               exit 1
           fi
           
