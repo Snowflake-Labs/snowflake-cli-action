@@ -26,7 +26,7 @@ jobs:
           id: setup_snowcli
           with:
             cli-version: '2.1.0'
-            default-config-file-path: '.github/workflows/tests/config.toml'
+            default-config-file-path: '.github/workflows/tests-files/config.toml'
 
         - name: Test connection 
           shell: bash
