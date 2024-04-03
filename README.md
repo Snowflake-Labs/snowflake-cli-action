@@ -1,6 +1,6 @@
 # Set up Snowflake CLI action v1
 
-Set up snowflake cli in your CI/CD workflow using pipx.
+Set up snowflake CLI in your CI/CD workflow using pipx.
 
 ## Features
 - Isolated instalation of snowflake-cli-labs.
@@ -8,21 +8,31 @@ Set up snowflake cli in your CI/CD workflow using pipx.
 
 ## Inputs
 
+### ` cli-version`
+
+The specified Snowflake CLI version.
+
+
 ### `default-config-file-path`
 
-**Required** Path to the default config.toml file.
-
-
-### `application-path`
-
-Path to the application folder with snowflake.yml file.
+Path to the config.toml file.
 
 
 ## Example usage
 
 ```yaml
-uses: actions/snowcli-deploy-nativeapp@V1
-with:
-  config_file: "config.toml"
-  source_code_path: "my_app"
+name: deploy
+on: [push]
+jobs:
+  version:
+     name: "Check Snowflake CLI version"
+     run-on: ubuntu-latest
+     steps:  
+        - uses: actions/snowflake-cli@V1
+          with:
+            cli-version: "2.1.0"
+            config_file: "config.toml"
+
+        - name: Test version
+          run: snow --version
 ```
