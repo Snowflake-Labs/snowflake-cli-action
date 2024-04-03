@@ -8,19 +8,21 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
-    name: Test the installation of Snowcli with pip and then with pipx
+      SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+
+    name: Test the installation of Snowflake CLI with pip and then with pipx
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Install snowcli 2.1.1 with pip
+      - name: Install Snowflake CLI 2.1.1 with pip
         run: python -m pip install snowflake-cli-labs==2.1.1 
 
-      - name: Install snowcli 2.1.0 with pipx
+      - name: Install Snowflake CLI 2.1.0 with pipx
         uses: ./ 
         id: setup_snowcli
         with:
@@ -35,24 +37,30 @@ jobs:
     env:
       SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
-    name: Test the installation of Snowcli with pipx and then with pip
+    name: Test the installation of Snowflake CLI with pipx and then with pip
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Install snowcli 2.1.0 with pipx
+      - name: Install Snowflake CLI 2.1.0 with pipx
         uses: ./ 
         id: setup_snowcli
         with:
           cli-version: '2.1.0'
-  
-      - name: Install snowcli 2.1.1 with pip
-        run: python -m pip install snowflake-cli-labs==2.1.1 
 
-      - name: Test version
-        run: snow --version
+      - name: Show snow installation 2.1.0
+        run: |
+          snow --version
+          which snow
+  
+      - name: Install Snowflake CLI 2.1.1 with pip
+        run: python -m pip install snowflake-cli-labs==2.1.1
+      - name: Show snow installation 2.1.1
+        run: |
+          snow --version
+          which snow 
           
   install_in_multiple_os:
       runs-on: ${{ matrix.os }}
@@ -68,13 +76,10 @@ jobs:
       env:
         SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD }}
 
-      name: Test install snowclis in multiple os
+      name: Test install Snowflake CLI in multiple OS
       steps:
         - uses: actions/checkout@v4
-        - uses: actions/setup-python@v5
-          with:
-            python-version: '3.10'
-        - name: Set up snowcli
+        - name: Set up Snowflake CLI
           uses: ./ 
           id: setup_snowcli
           with:
@@ -96,10 +101,7 @@ jobs:
     name: Deploys the app defined in my_app folder in the Snowflake account
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-      - name: Set up snowcli
+      - name: Set up Snowflake CLI
         uses: ./ 
         id: setup_snowcli
         with:

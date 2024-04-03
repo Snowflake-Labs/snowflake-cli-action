@@ -3,7 +3,7 @@ name: 'Install Snowflake CLI'
 description: 'Download and install snowflake-cli-labs through pipx'
 inputs:
   cli-version:
-    description: 'Snowcli version'
+    description: 'Snowflake CLI version'
     required: false
     default: ''
 

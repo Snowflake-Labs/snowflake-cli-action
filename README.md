@@ -1,4 +1,4 @@
-# Set up snowcli action v1
+# Set up Snowflake CLI action v1
 
 Set up snowflake cli in your CI/CD workflow using pipx.
 
