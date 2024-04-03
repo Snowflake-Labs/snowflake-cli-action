@@ -34,7 +34,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SNOWFLAKE_CONNECTIONS_MOBILIZE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
 
     name: Test the installation of Snowflake CLI with pipx and then with pip
     steps:
@@ -73,7 +74,8 @@ jobs:
             - windows-latest
 
       env:
-        SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD }}
+        SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+        SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
 
       name: Test install Snowflake CLI in multiple OS
       steps:
@@ -96,7 +98,9 @@ jobs:
   deploy_demo_native_app:
     runs-on: ubuntu-latest
     env:
-      SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD }}
+      SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+
     name: Deploys the app defined in my_app folder in the Snowflake account
     steps:
       - uses: actions/checkout@v4
@@ -105,7 +109,7 @@ jobs:
         id: setup_snowcli
         with:
           cli-version: '2.1.0'
-      - name: Test for Deploy
+      - name: Test for Deploy 
         run: |
           cd my_app
           snow app version create V1
