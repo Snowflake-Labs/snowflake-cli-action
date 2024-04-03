@@ -62,7 +62,7 @@ jobs:
         run: |
           current_path=$(which snow)
           snow_expected_path="$PIPX_BIN_DIR/snow"
-          echo "current $snow_expected_path, valid path $previous_path"
+          echo "current $current_path, valid path $snow_expected_path"
           if [[ "$current_path" != "$snow_expected_path" ]]
           then
               echo "Using snow installed in $current_path, should be $previous_path"
