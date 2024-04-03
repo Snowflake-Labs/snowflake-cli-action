@@ -28,7 +28,7 @@ jobs:
       - name: Test snow installation
         run: |
           current_path=$(which snow)
-          snow_expected_path="$PIPX_BIN_DIR/snow"
+          snow_expected_path="$PIPX_BIN_DIR/snow_pipx_path/snow"
           if [[ "$current_path" != "$snow_expected_path" ]]
           then
               echo "Using snow installed in $current_path, should be the version installed in $snow_expected_path"
@@ -59,13 +59,12 @@ jobs:
       - name: Test snow installation
         run: |
           current_path=$(which snow)
-          snow_expected_path="$PIPX_BIN_DIR/snow"
+          snow_expected_path="$PIPX_BIN_DIR/snow_pipx_path/snow"
           if [[ "$current_path" != "$snow_expected_path" ]]
           then
               echo "Using snow installed in $current_path, should be the version installed in $snow_expected_path"
               exit 1
           fi
-          echo $PATH
           
   install_in_multiple_os:
       runs-on: ${{ matrix.os }}
