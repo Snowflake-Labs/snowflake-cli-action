@@ -38,6 +38,10 @@ jobs:
         run: |
           current_path=$(which snow)
           snow_expected_path="$PIPX_BIN_DIR/snow_pipx_path/snow"
+          if [[ $RUNNER_OS = "Windows" ]]; then 
+              snow_expected_path="/c/Program Files (x86)/pipx_bin/snow_pipx_path/snow"
+          fi
+
           if [[ "$current_path" != "$snow_expected_path" ]]
           then
               echo "Using snow installed in $current_path, should be the version installed in $snow_expected_path"
@@ -78,6 +82,10 @@ jobs:
         run: |
           current_path=$(which snow)
           snow_expected_path="$PIPX_BIN_DIR/snow_pipx_path/snow"
+          if [[ $RUNNER_OS = "Windows" ]]; then 
+              snow_expected_path="/c/Program Files (x86)/pipx_bin/snow_pipx_path/snow"
+          fi
+
           if [[ "$current_path" != "$snow_expected_path" ]]
           then
               echo "Using snow installed in $current_path, should be the version installed in $snow_expected_path"
