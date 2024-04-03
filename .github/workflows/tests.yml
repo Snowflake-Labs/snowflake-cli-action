@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
 
-
   install_Snowcli_with_pip_and_then_with_pipx:
     runs-on: ubuntu-latest
 
@@ -29,15 +28,13 @@ jobs:
       - name: Test snow installation
         run: |
           current_path=$(which snow)
-          snow_valid_path="$PIPX_BIN_DIR/snow"
-          if [[ "$current_path" != "$snow_valid_path" ]]
+          snow_expected_path="$PIPX_BIN_DIR/snow"
+          if [[ "$current_path" != "$snow_expected_path" ]]
           then
               echo "Using snow installed in $current_path, should be $previous_path"
               exit 1
           fi
           
-
-
   install_Snowcli_with_pipx_and_then_with_pip:
     runs-on: ubuntu-latest
 
@@ -64,9 +61,9 @@ jobs:
       - name: Test snow installation
         run: |
           current_path=$(which snow)
-          snow_valid_path="$PIPX_BIN_DIR/snow"
-          echo "current $current_path, valid path $previous_path"
-          if [[ "$current_path" != "$snow_valid_path" ]]
+          snow_expected_path="$PIPX_BIN_DIR/snow"
+          echo "current $snow_expected_path, valid path $previous_path"
+          if [[ "$current_path" != "$snow_expected_path" ]]
           then
               echo "Using snow installed in $current_path, should be $previous_path"
               exit 1
