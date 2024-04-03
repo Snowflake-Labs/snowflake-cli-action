@@ -8,10 +8,10 @@ else
     pipx install snowflake-cli-labs==$CLI_VERSION 
 fi
 
-if [[ ! $RUNNER_OS = "Windows" ]]; then 
-    mkdir $PIPX_BIN_DIR/snow_pipx_path
-    cp $PIPX_BIN_DIR/snow $PIPX_BIN_DIR/snow_pipx_path
-    echo "$PIPX_BIN_DIR/snow_pipx_path" >> $GITHUB_PATH
-fi
+
+mkdir "$PIPX_BIN_DIR/snow_pipx_path"
+cp "$PIPX_BIN_DIR/snow" "$PIPX_BIN_DIR/snow_pipx_path"
+echo "$PIPX_BIN_DIR/snow_pipx_path" >> $GITHUB_PATH
+
 
 
