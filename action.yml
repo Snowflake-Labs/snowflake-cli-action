@@ -7,8 +7,7 @@ inputs:
     required: false
     default: ''
 
-  config-file-path:
-    description: 'Config file path'
+  default-config-file-path:
     required: false
     default: './config.toml'
 
@@ -17,12 +16,12 @@ runs:
   steps:
     - name: Download snowflake-cli-labs ${{ inputs.cli_version }}
       shell: bash
-      run: bash install_snowcli.sh
+      run: bash scripts/install_snowcli.sh
       env:
         CLI_VERSION: ${{ inputs.cli-version }} 
 
     - name: Set up config.toml
       shell: bash
-      run: bash setup_config_file.sh
+      run: bash scripts/setup_config_file.sh
       env:
-        CONFIG_FILE_PATH: ${{ inputs.config-file-path }} 
+        CONFIG_FILE_PATH: ${{ inputs.default-config-file-path }} 

@@ -8,7 +8,7 @@ Set up snowflake cli in your CI/CD workflow using pipx.
 
 ## Inputs
 
-### `default-config-file`
+### `default-config-file-path`
 
 **Required** Path to the default config.toml file.
 
