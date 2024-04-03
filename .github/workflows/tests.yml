@@ -9,7 +9,6 @@ jobs:
 
     env:
       SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-
       SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
 
     name: Test the installation of Snowflake CLI with pip and then with pipx
