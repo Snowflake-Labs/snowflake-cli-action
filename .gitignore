@@ -1,0 +1,17 @@
+__pycache__
+.venv
+*.egg-info
+config.ini
+credentials
+.DS_Store
+build/
+dist/
+.idea
+*.iml
+.tox
+./.packages
+.coverage
+/venv/
+
+^app.zip
+^snowflake.yml
