@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-if [ "$CLI_VERSION" == "" ]; then
+if [ "$CLI_VERSION" == "latest" ]; then
     pipx install snowflake-cli-labs 
 else 
     pipx install snowflake-cli-labs==$CLI_VERSION 
