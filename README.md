@@ -28,9 +28,9 @@ on: [push]
 jobs:
   version:
      name: "Check Snowflake CLI version"
-     run-on: ubuntu-latest
+     runs-on: ubuntu-latest
      steps:  
-        - uses: actions/snowflake-cli@v1
+        - uses: Snowflake-Labs/snowflake-cli-action@v1
           with:
             cli-version: "2.1.0"
             config_file: "config.toml"
