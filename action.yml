@@ -9,7 +9,7 @@ inputs:
 
   default-config-file-path:
     required: false
-    default: './config.toml'
+    default: '$GITHUB_ACTION_PATH/config.toml'
 
 runs:
   using: 'composite'
