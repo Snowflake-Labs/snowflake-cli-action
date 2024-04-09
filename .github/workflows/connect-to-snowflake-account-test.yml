@@ -20,7 +20,6 @@ jobs:
 
       name: Install Snowflake CLI in ${{ matrix.os }}
       steps:
-        - uses: actions/checkout@v4
         - name: create temporal config file.
           run: touch config.toml
           
