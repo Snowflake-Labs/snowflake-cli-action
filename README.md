@@ -30,7 +30,7 @@ jobs:
      name: "Check Snowflake CLI version"
      run-on: ubuntu-latest
      steps:  
-        - uses: actions/snowflake-cli@V1
+        - uses: actions/snowflake-cli@v1
           with:
             cli-version: "2.1.0"
             config_file: "config.toml"
