@@ -2,11 +2,8 @@
 
 **Note:** Snowflake CLI Github Action is in early development phase. The project may change or be abandoned. Do not use for production use cases.
 
-Streamlines installing and using [Snowflake CLI](https://docs.snowflake.com/developer-guide/snowflake-cli-v2/index) in your CI/CD workflows. The CLI is installed in isolated way making sure it won't conflict with dependencies of your project.
+Streamlines installing and using [Snowflake CLI](https://docs.snowflake.com/developer-guide/snowflake-cli-v2/index) in your CI/CD workflows. The CLI is installed in isolated way making sure it won't conflict with dependencies of your project. And automatically set up the input config file within the ~/.snowflake/ directory.
 
-## Features
-- Isolated instalation of snowflake-cli-labs.
-- Set up a default config.toml in ~/.snowflake/.
 
 ## Inputs
 
