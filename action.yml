@@ -16,12 +16,12 @@ runs:
   steps:
     - name: Download snowflake-cli-labs ${{ inputs.cli_version }}
       shell: bash
-      run: bash scripts/install-snowcli.sh
+      run: bash $GITHUB_ACTION_PATH/scripts/install-snowcli.sh
       env:
         CLI_VERSION: ${{ inputs.cli-version }} 
 
     - name: Set up config.toml
       shell: bash
-      run: bash scripts/setup-config-file.sh
+      run: bash $GITHUB_ACTION_PATH/scripts/setup-config-file.sh
       env:
         CONFIG_FILE_PATH: ${{ inputs.default-config-file-path }} 
