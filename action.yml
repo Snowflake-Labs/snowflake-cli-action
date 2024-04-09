@@ -5,7 +5,7 @@ inputs:
   cli-version:
     description: 'Snowflake CLI version'
     required: false
-    default: ''
+    default: 'latest'
 
   default-config-file-path:
     required: false
