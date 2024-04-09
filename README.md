@@ -1,6 +1,8 @@
-# Set up Snowflake CLI action v1
+# Snowflake CLI Github Action
 
-Set up snowflake CLI in your CI/CD workflow using pipx.
+**Note:** Snowflake CLI Github Action is in early development phase. The project may change or be abandoned. Do not use for production use cases.
+
+Streamlines installing and using [Snowflake CLI](https://docs.snowflake.com/developer-guide/snowflake-cli-v2/index) in your CI/CD workflows. The CLI is installed in isolated way making sure it won't conflict with dependencies of your project.
 
 ## Features
 - Isolated instalation of snowflake-cli-labs.
@@ -10,12 +12,12 @@ Set up snowflake CLI in your CI/CD workflow using pipx.
 
 ### ` cli-version`
 
-The specified Snowflake CLI version.
+The specified Snowflake CLI version. For example `2.2.2`.
 
 
 ### `default-config-file-path`
 
-Path to the config.toml file.
+Path to the config.toml file in your repository.
 
 
 ## Example usage
