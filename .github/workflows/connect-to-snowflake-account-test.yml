@@ -21,12 +21,14 @@ jobs:
       name: Install Snowflake CLI in ${{ matrix.os }}
       steps:
         - uses: actions/checkout@v4
+        - name: create temporal config file.
+          run: touch config.toml
+          
         - name: Set up Snowflake CLI
           uses: ./ 
           id: setup_snowcli
           with:
             cli-version: '2.1.0'
-            default-config-file-path: '.github/workflows/tests-files/config.toml'
 
         - name: Test connection 
           shell: bash
