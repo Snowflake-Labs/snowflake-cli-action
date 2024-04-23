@@ -30,7 +30,7 @@ jobs:
         - uses: Snowflake-Labs/snowflake-cli-action@v1
           with:
             cli-version: "2.1.0"
-            config_file: "config.toml"
+            default-config-file-path: "config.toml"
 
         - name: Test version
           run: snow --version
