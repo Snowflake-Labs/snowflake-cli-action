@@ -1,4 +1,6 @@
-﻿set -euo pipefail
+﻿#!/bin/sh
+
+set -euo pipefail
 
 if [ "$CLI_VERSION" == "latest" ]; then
     pipx install snowflake-cli-labs 

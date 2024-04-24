@@ -30,7 +30,7 @@ jobs:
      name: "Check Snowflake CLI version"
      runs-on: ubuntu-latest
      steps:
-          # Checkout step is necessary if you want to use a config file from repo
+          # Checkout step is necessary if you want to use a config file from your repo
         - name: Checkout repo
           uses: actions/checkout@v4
           with:

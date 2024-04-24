@@ -1,3 +1,5 @@
+#!/bin/sh
+
 set -euo pipefail
 
 if [ ! -e $CONFIG_FILE_PATH ]
