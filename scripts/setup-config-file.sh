@@ -4,7 +4,7 @@ set -euo pipefail
 
 if [ ! -e $CONFIG_FILE_PATH ]
 then
-    echo "File $CONFIG_FILE_PATH not found, default config.toml file was not set up in this job."
+    echo "Provided file $CONFIG_FILE_PATH not found, using default config file."
     exit 0
 fi
 
