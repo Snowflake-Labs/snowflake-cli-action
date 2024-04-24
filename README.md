@@ -33,6 +33,8 @@ jobs:
           # Checkout step is necessary if you want to use a config file from repo
         - name: Checkout repo
           uses: actions/checkout@v4
+          with:
+            persist-credentials: false
 
           # Snowflake CLI installation
         - uses: Snowflake-Labs/snowflake-cli-action@v1
