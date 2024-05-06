@@ -1,6 +1,6 @@
 # Snowflake CLI Github Action
 
-**Note:** Snowflake CLI Github Action is in Preview
+**Note:** Snowflake CLI Github Action is in Preview.
 
 Streamlines installing and using [Snowflake CLI](https://docs.snowflake.com/developer-guide/snowflake-cli-v2/index) in your CI/CD workflows. The CLI is installed in 
 isolated way making sure it won't conflict with dependencies of your project.  Automatically set up 
