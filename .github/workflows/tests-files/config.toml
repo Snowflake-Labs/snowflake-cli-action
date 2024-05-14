@@ -3,8 +3,3 @@ default_connection_name = "myconnection"
 [connections] 
 [connections.myconnection]
 user = "jovasquez"
-warehouse = "SC_ASGARD_WH"
-database = "DEMO"
-schema = "PUBLIC"
-role = "SC_ASGARD_ROLE"
-
