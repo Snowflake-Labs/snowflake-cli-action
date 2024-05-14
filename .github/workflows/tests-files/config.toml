@@ -2,9 +2,9 @@ default_connection_name = "myconnection"
   
 [connections] 
 [connections.myconnection]
-user = "jorvasquezr"
-warehouse = "COMPUTE_WH"
-database = "mytestdb"
+user = "jovasquez"
+warehouse = "SC_ASGARD_WH"
+database = "DEMO"
 schema = "PUBLIC"
-role = "ACCOUNTADMIN"
-region = "us-east-1"
+role = "SC_ASGARD_ROLE"
+
