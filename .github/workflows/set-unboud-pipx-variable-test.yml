@@ -16,7 +16,7 @@ jobs:
       env:
         SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-        PIPX_BIN_DIR: ""
+        PIPX_BIN_DIR: null
 
       name: Install Snowflake CLI in ${{ matrix.os }}
       steps:
