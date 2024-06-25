@@ -1,9 +1,8 @@
-﻿name: connect-to-snowflake-account-test
-
+﻿name: set-unboud-pipx-variable-test
 on: [push]
 
 jobs:
-  connect-to-snowflake-account-test:
+  set-unboud-pipx-variable-test:
       runs-on: ${{ matrix.os }}
 
       strategy:
