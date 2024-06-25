@@ -2,9 +2,9 @@
 
 set -euo pipefail
 
-#if [ -z "${PIPX_BIN_DIR}" ]; then
-#    export PIPX_BIN_DIR="~/.local/bin"
-#fi
+if [ -z "${PIPX_BIN_DIR}" ]; then
+    export PIPX_BIN_DIR="~/.local/bin"
+fi
 
 if [ "$CLI_VERSION" == "latest" ]; then
     pipx install snowflake-cli-labs 
