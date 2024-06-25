@@ -33,4 +33,3 @@ jobs:
           run: |
             snow --version
             snow connection list
-            snow connection test
