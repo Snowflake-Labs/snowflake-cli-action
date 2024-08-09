@@ -213,7 +213,6 @@ jobs:
            snow connection test --temporary-connection 
 ```
 
-
 ## References
 
 - [Snowflake credentials using environment variables](https://docs.snowflake.com/en/developer-guide/snowflake-cli-v2/connecting/specify-credentials#how-to-use-environment-variables-for-snowflake-credentials). 
