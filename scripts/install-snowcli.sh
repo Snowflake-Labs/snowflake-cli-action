@@ -6,7 +6,7 @@ PIPX_PATH="snow_pipx_path"
 # These commands ensure that each time `snow` command is executed the system will use 
 # the executable in the pipx installation folder and not in any other installation folder.
 
-PIPX_BIN_DIR=${PIPX_BIN_DIR:-"${HOME}/.local/bin"}/$PIPX_PATH
+export PIPX_BIN_DIR=${PIPX_BIN_DIR:-"${HOME}/.local/bin"}/$PIPX_PATH
 
 mkdir -p "${PIPX_BIN_DIR}"
 
