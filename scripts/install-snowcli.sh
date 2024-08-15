@@ -1,4 +1,4 @@
-﻿#!/usr/bin/bash
+#!/usr/bin/bash
 
 set -euo pipefail
 PIPX_PATH="snow_pipx_path"
@@ -14,8 +14,8 @@ mkdir -p "${PIPX_BIN_DIR}"
 if [ "$CLI_VERSION" == "latest" ]; then
     pipx install snowflake-cli-labs 
 else 
-    pipx install snowflake-cli-labs==$CLI_VERSION 
+    pipx install snowflake-cli-labs=="$CLI_VERSION"
 fi
 
 
-echo "$PIPX_BIN_DIR" >> $GITHUB_PATH
+echo "$PIPX_BIN_DIR" >> "$GITHUB_PATH"
