@@ -1,6 +1,10 @@
 ﻿# action.yml
 name: 'Install Snowflake CLI'
 description: 'Download and install snowflake-cli-labs through pipx'
+branding:
+  icon: 'terminal'
+  color: 'blue'
+  
 inputs:
   cli-version:
     description: 'Snowflake CLI version'
