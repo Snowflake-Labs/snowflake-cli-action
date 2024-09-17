@@ -33,27 +33,30 @@ To set up Snowflake credentials for a specific connection follow these steps.
      [connections]
      [connections.myconnection]
      user = ""
-     password = ""
      ```
 
    This file serves as a template and is preferable to not contain any actual credentials.
 
+2. **Generate a private key**:
+   Generate a key pair for you snowflake account following this [user guide](https://docs.snowflake.com/en/user-guide/key-pair-auth).
 
-2. **Store Credentials in GitHub Secrets**:
-   - Store each credential (e.g., account, password) in GitHub Secrets. Refer to the [GitHub Actions documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository) for detailed instructions on how to create and manage secrets for your repository.
+   
+
+3. **Store Credentials in GitHub Secrets**:
+   - Store each credential (e.g., account, private key, passphrase) in GitHub Secrets. Refer to the [GitHub Actions documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository) for detailed instructions on how to create and manage secrets for your repository.
 
 
 
-3. **Map Secrets to Environment Variables**:
+4. **Map Secrets to Environment Variables**:
    - Map each secret to an environment variable using the format `SNOWFLAKE_CONNECTIONS_<connection-name>_<key>=<value>`. This overrides the credentials defined in `config.toml`. For example:
 
      ```yaml
      env:
-       SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+       SNOWFLAKE_CONNECTIONS_INTEGRATION_PRIVATE_KEY_RAW: ${{ secrets.SNOWFLAKE_PRIVATE_KEY_RAW }}
        SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
      ```
 
-4. **Configure the Snowflake CLI Action**:
+5. **Configure the Snowflake CLI Action**:
    - Add the `default-config-file-path` parameter to the Snowflake CLI action step in your workflow file. This specifies the path to your `config.toml` file. For example:
 
      ```yaml
@@ -64,6 +67,30 @@ To set up Snowflake credentials for a specific connection follow these steps.
      ```
 
    Replace `latest` with a specific version of Snowflake CLI action if needed.
+
+6. **[Optional] Set up a passphrase if private key is encrypted**:
+   - Add an additional environment variable named `PRIVATE_KEY_PASSPHRASE` and set it to the private key passphrase. This passphrase will be used by Snowflake to decrypt the private key.
+
+     ```yaml
+        - name: Execute Snowflake CLI command
+          env:
+          PRIVATE_KEY_PASSPHRASE: ${{ secrets.PASSPHARSE }}
+          run: |
+           snow --version
+           snow connection test
+     ```
+
+7. **[Extra] Using password instead of private key**:
+   - Unset the environment variable `SNOWFLAKE_CONNECTIONS_INTEGRATION_AUTHENTICATOR` and then add a new variable with the password as follows:
+
+     ```yaml
+     env:
+        SNOWFLAKE_CONNECTIONS_INTEGRATION_USER: ${{ secrets.SNOWFLAKE_USER }}
+        SNOWFLAKE_CONNECTIONS_INTEGRATION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+        SNOWFLAKE_CONNECTIONS_INTEGRATION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+
+     ```
+
 
 
 
@@ -79,7 +106,6 @@ default_connection_name = "myconnection"
 [connections] 
 [connections.myconnection]
 user = ""
-password = ""
 ```
 
 
@@ -93,10 +119,10 @@ jobs:
      name: "Check Snowflake CLI version"
      runs-on: ubuntu-latest
      env:
-        SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-        SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-        SNOWFLAKE_CONNECTIONS_MYCONNECTION_USER: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-        SNOWFLAKE_CONNECTIONS_MYCONNECTION_DATABASE: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+        SNOWFLAKE_CONNECTIONS_INTEGRATION_AUTHENTICATOR: SNOWFLAKE_JWT
+        SNOWFLAKE_CONNECTIONS_INTEGRATION_USER: ${{ secrets.SNOWFLAKE_USER }}
+        SNOWFLAKE_CONNECTIONS_INTEGRATION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+        SNOWFLAKE_CONNECTIONS_INTEGRATION_PRIVATE_KEY_RAW: ${{ secrets.SNOWFLAKE_PRIVATE_KEY_RAW }}
 
 
      steps:
@@ -113,7 +139,9 @@ jobs:
             default-config-file-path: "config.toml"
         
           # Use the CLI
-        - name: Test version
+        - name: Execute Snowflake CLI command
+          env:
+          PRIVATE_KEY_PASSPHRASE: ${{ secrets.PASSPHARSE }} #Passphrase is only necessary if private key is encrypted. 
           run: |
            snow --version
            snow connection test
