@@ -12,9 +12,9 @@ mkdir -p "${PIPX_BIN_DIR}"
 
 
 if [ "$CLI_VERSION" == "latest" ]; then
-    pipx install snowflake-cli-labs 
+    pipx install snowflake-cli
 else 
-    pipx install snowflake-cli-labs=="$CLI_VERSION"
+    pipx install snowflake-cli=="$CLI_VERSION"
 fi
 
 
