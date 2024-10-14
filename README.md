@@ -127,7 +127,7 @@ jobs:
           persist-credentials: false
 
         # Snowflake CLI installation
-      - uses: Snowflake-Labs/snowflake-cli-action@v1
+      - uses: Snowflake-Labs/snowflake-cli-action@v1.5
         with:
           cli-version: "latest"
           default-config-file-path: "config.toml"
