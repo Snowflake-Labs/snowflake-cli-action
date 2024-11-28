@@ -14,13 +14,11 @@ jobs:
           - ubuntu-latest
           - windows-latest
 
-    env:
-      SNOWFLAKE_CONNECTIONS_MYCONNECTION_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-      SNOWFLAKE_CONNECTIONS_MYCONNECTION_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-
     name: Install Snowflake CLI in ${{ matrix.os }} with pipx first and then with pip
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
