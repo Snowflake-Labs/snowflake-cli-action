@@ -37,7 +37,7 @@ jobs:
       - name: Store snow version
         run: |
             snow --version >> version_output.txt
-            if [[ $RUNNER_OS == 'Windows' ]]; then
+            if [[ $RUNNER_OS = "Windows" ]]; then
                 $snow_version_pip = Get-Content version_output.txt
                 Add-Content -Path $env:GITHUB_ENV -Value "snow_version_pip=$snow_version_pip"
             else
