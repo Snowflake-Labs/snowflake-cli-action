@@ -34,16 +34,10 @@ jobs:
         run: |
             python -m pip install snowflake-cli
     
-      - name: Test snow installation
-        run: |
-            snow --help
-            snow --version
-            
-    
       - name: Store snow version
         run: |
-            snow_version=$(snow --version)
-            echo "snow_version_pip=$snow_version" >> $GITHUB_ENV
+            snow --version >> version_output.txt
+            echo "snow_version_pip=$(cat version_output.txt)" >> $GITHUB_ENV
 
       - name: Install Snowflake CLI with pipx
         uses: ./ 
