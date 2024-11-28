@@ -37,7 +37,13 @@ jobs:
       - name: Store snow version
         run: |
             snow --version >> version_output.txt
-            echo "snow_version_pip=$(cat version_output.txt)" >> $GITHUB_ENV
+            if [[ $RUNNER_OS == 'Windows' ]]; then
+                $snow_version_pip = Get-Content version_output.txt
+                Add-Content -Path $env:GITHUB_ENV -Value "snow_version_pip=$snow_version_pip"
+            else
+
+                echo "snow_version_pip=$(cat version_output.txt)" >> $GITHUB_ENV
+            fi
 
       - name: Install Snowflake CLI with pipx
         uses: ./ 
