@@ -1,6 +1,11 @@
 ﻿name: connect-to-snowflake-account-test
 
-on: [push]
+on:
+  push:
+    branches:
+      - '*' 
+  schedule:
+    - cron: "0 0 * * *"  
 
 jobs:
   connect-to-snowflake-account-test:
