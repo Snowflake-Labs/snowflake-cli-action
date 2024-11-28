@@ -1,6 +1,6 @@
 ﻿# action.yml
 name: 'Install Snowflake CLI'
-description: 'Download and install snowflake-cli-labs through pipx'
+description: 'Download and install snowflake-cli through pipx'
 branding:
   icon: 'terminal'
   color: 'blue'
@@ -18,7 +18,7 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Download snowflake-cli-labs ${{ inputs.cli_version }}
+    - name: Download snowflake-cli ${{ inputs.cli_version }}
       shell: bash
       run: bash $GITHUB_ACTION_PATH/scripts/install-snowcli.sh
       env:
