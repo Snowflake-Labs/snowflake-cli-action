@@ -135,7 +135,7 @@ jobs:
         # Use the CLI
       - name: Execute Snowflake CLI command
         env:
-        PRIVATE_KEY_PASSPHRASE: ${{ secrets.PASSPHARSE }} #Passphrase is only necessary if private key is encrypted.
+          PRIVATE_KEY_PASSPHRASE: ${{ secrets.PASSPHARSE }} #Passphrase is only necessary if private key is encrypted.
         run: |
           snow --version
           snow connection test
